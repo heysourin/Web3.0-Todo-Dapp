@@ -7,7 +7,7 @@ contract ToDoList {
 
     address[] public creators;
     string[] public message;
-    uint public messageId;
+    uint[] public messageId;
 
     struct ToDoListApp {
         address account;
@@ -23,7 +23,7 @@ contract ToDoList {
         owner = msg.sender;
     }
 
-    function inc()  returns () {
+    function inc() internal {
         _idUser++;
     }
 
@@ -34,5 +34,30 @@ contract ToDoList {
         toDo.account = msg.sender;
         toDo.message = _message;
         toDo.userId = idNumber;
+
+        creators.push(msg.sender);
+        message.push(_message);
+        messageId.push(idNumber);
+
+        emit ToDoEvent(msg.sender, toDo.userId, _message, toDo.completed);
     }
+
+    function getCreatorData( address _address) public view returns(address, uint, string memory, bool) {
+        ToDoListApp memory singleUserdata = toDoListApps[_address];
+        return(singleUserdata.account, singleUserdata.userId, singleUserdata.message, singleUserdata.completed);
+
+    }
+
+    function getAddress() external view returns(address[] memory){
+        return creators;
+    }
+
+    function getMessage() external view returns(string[] memory){
+        return message;
+    }
+
+    function toggle(address _creator) public{
+        ToDoListApp storage singleUserData = toDoListApps[_creator];
+        singleUserData.completed = !singleUserData.completed;//* Just to tick and untick it
+    } 
 }
