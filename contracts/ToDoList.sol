@@ -30,7 +30,7 @@ contract ToDoList {
     function createList(string calldata _message) external{
         inc();
         uint idNumber = _idUser;
-        ToDoListApp storage toDo = toDoListApps[msg.sender];
+        ToDoListApp storage toDo = toDoListApps[msg.sender];//creating 'toDo' variable of 'ToDoListApp' struct and putting inside 'toDoListApps' mappping 
         toDo.account = msg.sender;
         toDo.message = _message;
         toDo.userId = idNumber;
@@ -45,7 +45,6 @@ contract ToDoList {
     function getCreatorData( address _address) public view returns(address, uint, string memory, bool) {
         ToDoListApp memory singleUserdata = toDoListApps[_address];
         return(singleUserdata.account, singleUserdata.userId, singleUserdata.message, singleUserdata.completed);
-
     }
 
     function getAddress() external view returns(address[] memory){
