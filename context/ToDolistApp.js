@@ -121,6 +121,7 @@ export const ToDoListProvider = ({ children }) => {
         getToDoList,
         change,
         currentAccount,
+        allToDoList,
         error,
         myList,
         allAddress
