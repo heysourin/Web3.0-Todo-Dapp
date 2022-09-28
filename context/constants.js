@@ -1,1 +1,5 @@
-// 0x5FC8d32690cc91D4c39d9d3abcBD16989F875707
+import ToDoList from "./ToDoList.json";
+
+export const toDoListAddress = "0x3F8b0E46a04Fc9F627C3294C975f752800B1E568";
+
+export const toDoListABI = ToDoList.abi;
