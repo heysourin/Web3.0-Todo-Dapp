@@ -62,7 +62,7 @@ export const ToDoListProvider = ({ children }) => {
       const createList = await contract.createList(message);
       createList.wait();
       console.log(createList);
-    } catch (err) {
+    } catch (error) {
       setError("Something wrong creating list");
     }
   };
@@ -77,12 +77,12 @@ export const ToDoListProvider = ({ children }) => {
       const contract = await fetchContract(signer);
 
       //Getting the data
-      const getAllAddress = contract.getAddress();
+      const getAllAddress = await contract.getAddress();
       setAllAddress(getAllAddress); //* Putting the data of the contract into this react component
       console.log(getAllAddress);
 
       getAllAddress.map(async (el) => {
-        const getSingleData = await contract.getCreatorData();
+        const getSingleData = await contract.getCreatorData(el);
         allToDoList.push(getAllAddress);
         console.log(getSingleData);
       });
@@ -90,7 +90,7 @@ export const ToDoListProvider = ({ children }) => {
       const allMessage = await contract.getMessage();
 
       setMyList(allMessage);
-    } catch (err) {
+    } catch (error) {
       setError("Something wrong getting data");
     }
   };
