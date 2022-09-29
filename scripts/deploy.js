@@ -10,7 +10,7 @@ async function main() {
 
   console.log(`Contract Deployed to: ${ToDoListDeploy.address}`);
 
-  console.log(ToDoListDeploy);
+  // console.log(ToDoListDeploy);
 }
 
 
