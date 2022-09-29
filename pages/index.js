@@ -8,7 +8,7 @@ import { AiFillLock, AiFillUnlock } from 'react-icons/ai'
 import { ToDoListContext } from "../context/ToDolistApp";
 import Style from "../styles/index.module.css";
 import Data from "../component/Data";
-// import Loading from "";//Todo
+import Loading from "../1amw.gif";
 
 const Home = () => {
   const [message, setMessage] = useState("");
@@ -35,7 +35,7 @@ const Home = () => {
     <>
       <div className={Style.home}>
         <div className={Style.navBar}>
-          {/* <Image src={ll} alt="Logo" width={50} height={50}/> */}
+          <Image src={Loading} alt="Logo" width={50} height={50}/>
           <div className={Style.connect}>
             {!currentAccount ? (
               <button onClick={() => {}}>Connect Account</button>

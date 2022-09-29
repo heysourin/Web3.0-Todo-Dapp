@@ -31,7 +31,7 @@ export const ToDoListProvider = ({ children }) => {
       setCurrentAccount(account[0]);
       console.log(account[0]);
     } else {
-      setError("Please install metamask and reload");
+      setError("Please install metamask, connect and reload");
     }
   };
 
@@ -42,7 +42,7 @@ export const ToDoListProvider = ({ children }) => {
 
     const account = await window.ethereum.request({
       method: "eth_requestAccounts",
-    });//!Notice: 'method: "eth_requestAccounts"'
+    }); //!Notice: 'method: "eth_requestAccounts"'
 
     setCurrentAccount(account[0]);
   };
@@ -58,7 +58,7 @@ export const ToDoListProvider = ({ children }) => {
       const provider = new ethers.providers.Web3Provider(connection);
       const signer = provider.getSigner();
       const contract = await fetchContract(signer);
-      
+
       const createList = await contract.createList(message);
       createList.wait();
       console.log(createList);
@@ -66,7 +66,7 @@ export const ToDoListProvider = ({ children }) => {
       setError("Something wrong creating list");
     }
   };
-  
+
   //TODO: This function will allow user to create getTodolist', grabbing the fucntion from smart contract
   const getToDoList = async () => {
     try {
@@ -78,7 +78,7 @@ export const ToDoListProvider = ({ children }) => {
 
       //Getting the data
       const getAllAddress = contract.getAddress();
-      setAllAddress(getAllAddress);//* Putting the data of the contract into this react component
+      setAllAddress(getAllAddress); //* Putting the data of the contract into this react component
       console.log(getAllAddress);
 
       getAllAddress.map(async (el) => {
@@ -120,14 +120,15 @@ export const ToDoListProvider = ({ children }) => {
         toDoList,
         getToDoList,
         change,
+        
         currentAccount,
         allToDoList,
         error,
         myList,
-        allAddress
+        allAddress,
       }}
     >
       {children}
     </ToDoListContext.Provider>
-  ); //?'value' will allow this function to be used from another pages via the 'context' api
+  ); //?'value's will allow this function to be used from another pages with the help of 'context' api
 };

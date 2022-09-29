@@ -4,7 +4,9 @@ import { ToDoListProvider } from "../context/ToDolistApp";
 
 const MyApp = ({ Component, pageProps }) => (
   <ToDoListProvider>
+    <div>
     <Component {...pageProps} />
+    </div>
   </ToDoListProvider>
 );
 
